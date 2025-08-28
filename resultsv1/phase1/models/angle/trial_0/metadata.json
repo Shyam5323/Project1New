@@ -1,0 +1,13 @@
+{
+  "encoding": "angle",
+  "trial": 0,
+  "seed": 372370,
+  "n_qubits": 6,
+  "n_layers": 2,
+  "param_count": 24,
+  "feature_dim": 6,
+  "accuracy": 0.95,
+  "f1_score": 0.9499861072520145,
+  "circuit_depth_example": 12,
+  "gate_count_example": 40
+}

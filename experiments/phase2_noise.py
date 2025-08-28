@@ -140,8 +140,11 @@ class Phase2NoiseExperiment:
             
             print(f"   🔢 Training on {len(train_features_subset)} samples instead of {len(quantum_data['train_features'])}")
         else:
-            train_features_subset = quantum_data['train_features']
-            train_labels_subset = quantum_data['train_labels']
+            n_samples = min(4000, len(quantum_data['train_features']))  
+            indices = np.random.choice(len(quantum_data['train_features']), n_samples, replace=False)
+            
+            train_features_subset = quantum_data['train_features'][indices]
+            train_labels_subset = quantum_data['train_labels'][indices]
         
         for encoding in ['amplitude', 'angle', 'basis']:
             print(f"   🔄 Training {encoding} model...")
@@ -196,6 +199,7 @@ class Phase2NoiseExperiment:
 
 
     def run_parametric_noise_sweep(self, quantum_data):
+        
         """Systematic sweep of noise parameters using trained models when available."""
         print("\n" + "=" * 60)
         print("PHASE 2A: PARAMETRIC NOISE SWEEP")

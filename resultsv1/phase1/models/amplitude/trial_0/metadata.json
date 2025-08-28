@@ -1,0 +1,13 @@
+{
+  "encoding": "amplitude",
+  "trial": 0,
+  "seed": 121958,
+  "n_qubits": 3,
+  "n_layers": 2,
+  "param_count": 12,
+  "feature_dim": 6,
+  "accuracy": 0.8666666666666667,
+  "f1_score": 0.8665183537263625,
+  "circuit_depth_example": 9,
+  "gate_count_example": 17
+}

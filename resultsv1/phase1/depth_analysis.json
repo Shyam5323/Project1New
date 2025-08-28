@@ -1,0 +1,56 @@
+[
+  {
+    "encoding": "basis",
+    "circuit_depth": 2,
+    "trial": 0,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  },
+  {
+    "encoding": "basis",
+    "circuit_depth": 2,
+    "trial": 1,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  },
+  {
+    "encoding": "basis",
+    "circuit_depth": 3,
+    "trial": 0,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  },
+  {
+    "encoding": "basis",
+    "circuit_depth": 3,
+    "trial": 1,
+    "accuracy": 0.9666666666666667,
+    "precision": 0.9666666666666667,
+    "recall": 0.9666666666666667,
+    "f1_score": 0.9666666666666667
+  },
+  {
+    "encoding": "basis",
+    "circuit_depth": 4,
+    "trial": 0,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  },
+  {
+    "encoding": "basis",
+    "circuit_depth": 4,
+    "trial": 1,
+    "accuracy": 0.95,
+    "precision": 0.9505005561735262,
+    "recall": 0.95,
+    "f1_score": 0.9499861072520145
+  }
+]

@@ -98,9 +98,20 @@ class QuantumMLMasterOrchestrator:
                     target_dim=6,  # Start with 6D for initial experiments
                     random_seed=self.config.phase1.random_seed
                 )
-                
-                dataset = processor.load_dataset()
-                
+                dataset = processor.load_dataset()                    
+                if dataset:
+                    max_samples = 8000
+                    
+                    dataset['train_images'] = dataset['train_images'][:max_samples]
+                    dataset['train_labels'] = dataset['train_labels'][:max_samples]
+                    dataset['test_images'] = dataset['test_images'][:max_samples]
+                    dataset['test_labels'] = dataset['test_labels'][:max_samples]
+                    
+                    all_datasets[dataset_name] = dataset
+                    print(f"   ✅ {dataset_name} loaded successfully")
+                    print(f"      Training samples: {len(dataset['train_images'])}")
+                    print(f"      Test samples: {len(dataset['test_images'])}")
+                                
                 if dataset:
                     all_datasets[dataset_name] = dataset
                     print(f"   ✅ {dataset_name} loaded successfully")
@@ -169,7 +180,7 @@ class QuantumMLMasterOrchestrator:
         self.phase1.trials_per_condition = self.config.phase1.trials_per_condition
         
         # Run complete Phase 1
-        phase1_results = self.phase1.run_medium_scale(self.datasets)
+        phase1_results = self.phase1.run_complete_phase1(self.datasets)
         
         print("\n✅ Phase 1 completed successfully!")
         return phase1_results
@@ -190,7 +201,7 @@ class QuantumMLMasterOrchestrator:
         )
         
         # Run complete Phase 2
-        phase2_results = self.phase2.run_quick_demo_phase2(self.quantum_data)
+        phase2_results = self.phase2.run_complete_phase2(self.quantum_data)
         
         print("\n✅ Phase 2 completed successfully!")
         return phase2_results

@@ -219,7 +219,7 @@ class QuantumMultiClassifier:
         
         return total_loss / max(1, n_samples)
     
-    def train(self, X_train, y_train, batch_size=20, n_epochs=3, show_progress=True):
+    def train(self, X_train, y_train, batch_size=20, n_epochs=4, show_progress=True):
         # Convert inputs to numpy arrays
         X_train = np.asarray(X_train)
         y_train = np.asarray(y_train, dtype=int)
@@ -374,9 +374,9 @@ class Phase1BaselineExperiment:
         
         # Experiment parameters optimized for laptop execution
         self.encoding_strategies = ['amplitude', 'angle', 'basis']
-        self.feature_dimensions = [2, 4, 6, 8]
-        self.circuit_depths = [2, 3, 4, 8]
-        self.trials_per_condition = 2
+        self.feature_dimensions = [2, 4, 6, 8, 10]
+        self.circuit_depths = [2, 3, 4, 8, 10]
+        self.trials_per_condition = 4
         
         self.results = {
             'encoding_comparison': [],
@@ -386,7 +386,7 @@ class Phase1BaselineExperiment:
             'classical_baselines': {}
         }
         
-    def prepare_dataset(self, datasets, n_classes=2, samples_per_class=150):
+    def prepare_dataset(self, datasets, n_classes=2, samples_per_class=300):
         processor = MedicalImageProcessor(target_dim=6)
         full_data = processor.prepare_for_quantum(datasets)
         
@@ -496,7 +496,7 @@ class Phase1BaselineExperiment:
                 encoder = self._create_encoder(encoding, quantum_data['feature_dim'])
                 qml_model = QuantumMultiClassifier(
                     encoder, n_classes=quantum_data['n_classes'], 
-                    n_layers=2, maxiter=50, shots_final=512
+                    n_layers=2, maxiter=80, shots_final=512
                 )
                 
                 start_time = datetime.now()

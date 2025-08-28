@@ -1,0 +1,36 @@
+[
+  {
+    "encoding": "basis",
+    "trial": 0,
+    "feature_dim": 6,
+    "n_qubits": 6,
+    "training_time": 61.929445,
+    "param_count": 24,
+    "circuit_depth_example": 13,
+    "gate_count_example": 42,
+    "accuracy_per_qubit": 0.15833333333333333,
+    "f1_per_param": 0.039578111946533,
+    "seed": 121958,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  },
+  {
+    "encoding": "basis",
+    "trial": 1,
+    "feature_dim": 6,
+    "n_qubits": 6,
+    "training_time": 62.259116,
+    "param_count": 24,
+    "circuit_depth_example": 13,
+    "gate_count_example": 42,
+    "accuracy_per_qubit": 0.15833333333333333,
+    "f1_per_param": 0.039578111946533,
+    "seed": 968911,
+    "accuracy": 0.95,
+    "precision": 0.9545454545454546,
+    "recall": 0.95,
+    "f1_score": 0.9498746867167919
+  }
+]

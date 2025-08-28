@@ -1,0 +1,30 @@
+{
+  "parametric_noise": {
+    "amplitude_amplitude_damping": {
+      "accuracy_mean": 0.8136,
+      "accuracy_std": 0.0,
+      "accuracy_min": 0.8136,
+      "accuracy_max": 0.8136,
+      "noise_level_min": 0.01,
+      "noise_level_max": 0.05
+    },
+    "amplitude_depolarizing": {
+      "accuracy_mean": 0.8136,
+      "accuracy_std": 0.0,
+      "accuracy_min": 0.8136,
+      "accuracy_max": 0.8136,
+      "noise_level_min": 0.01,
+      "noise_level_max": 0.05
+    }
+  },
+  "resilience_analysis": {
+    "depolarizing": {
+      "best_encoding": "amplitude",
+      "performance": 0.8136490250696379
+    },
+    "amplitude_damping": {
+      "best_encoding": "amplitude",
+      "performance": 0.8136490250696379
+    }
+  }
+}

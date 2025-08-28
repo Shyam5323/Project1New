@@ -1,0 +1,11 @@
+{
+  "primary_dataset": "pathmnist",
+  "feature_dimension": 6,
+  "n_train_samples": 100000,
+  "n_test_samples": 7180,
+  "preparation_time": "2025-08-28T17:32:45.721686",
+  "datasets_loaded": [
+    "pathmnist",
+    "pneumoniamnist"
+  ]
+}

@@ -1,0 +1,5 @@
+noise_type,noise_level,encoding,accuracy_mean,accuracy_std,sample_size
+depolarizing,0.01,amplitude,0.8136,0.0,3
+depolarizing,0.05,amplitude,0.8136,0.0,3
+amplitude_damping,0.01,amplitude,0.8136,0.0,3
+amplitude_damping,0.05,amplitude,0.8136,0.0,3

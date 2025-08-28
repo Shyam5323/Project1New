@@ -1,0 +1,13 @@
+{
+  "encoding": "basis",
+  "trial": 1,
+  "seed": 968911,
+  "n_qubits": 6,
+  "n_layers": 2,
+  "param_count": 24,
+  "feature_dim": 6,
+  "accuracy": 0.95,
+  "f1_score": 0.9498746867167919,
+  "circuit_depth_example": 13,
+  "gate_count_example": 42
+}
