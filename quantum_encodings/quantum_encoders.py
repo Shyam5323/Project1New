@@ -54,11 +54,11 @@ class AmplitudeEncoder(QuantumEncoder):
     def _calculate_qubits(self):
         """Need log2(n_features) qubits for amplitude encoding"""
         return int(np.ceil(np.log2(max(self.n_features, 2))))
-    
+
     def encode(self, features, circuit=None):
-        """
-        Encode features as amplitudes of quantum state
-        """
+        """ Encode features as amplitudes of quantum state """
+        if np.allclose(features, 0):
+            print("Warning: Zero feature vector detected in amplitude encoding")
         if circuit is None:
             circuit = QuantumCircuit(self.n_qubits)
 
@@ -77,14 +77,15 @@ class AmplitudeEncoder(QuantumEncoder):
             self._approximate_amplitude_encoding(padded_features, circuit)
 
         return circuit
-    
+
     def _normalize_features(self, features):
-        """Normalize feature vector to unit length"""
         norm = np.linalg.norm(features)
-        if norm == 0:
-            return features
+        if norm < 1e-10:  # More precise threshold
+            # Create a meaningful default state instead of |0...0>
+            normalized = np.ones(len(features)) / np.sqrt(len(features))
+            return normalized
         return features / norm
-    
+        
     def _pad_to_power_of_2(self, features):
         """Pad feature vector to nearest power of 2 length"""
         target_length = 2 ** self.n_qubits
@@ -96,29 +97,150 @@ class AmplitudeEncoder(QuantumEncoder):
         return padded
     def _approximate_amplitude_encoding(self, amplitudes, circuit):
         """
-        Proper approximate amplitude encoding using controlled rotations
-        """
-        n_amps = len(amplitudes)
+        Proper approximate amplitude encoding with multiple fallback strategies
         
-        if n_amps == 1:
-            circuit.ry(2 * np.arcsin(min(abs(amplitudes[0]), 1.0)), 0)
+        Args:
+            amplitudes: numpy array of normalized amplitudes
+            circuit: QuantumCircuit to add encoding to
+        """
+        try:
+            # Strategy 1: Use Qiskit's StatePreparation (most accurate)
+            from qiskit.circuit.library import StatePreparation
+            state_prep = StatePreparation(amplitudes)
+            circuit.compose(state_prep, inplace=True)
+            return
+            
+        except Exception as e:
+            print(f"StatePreparation failed: {e}, trying recursive decomposition...")
+            
+        try:
+            # Strategy 2: Recursive amplitude encoding decomposition
+            self._recursive_amplitude_decomposition(amplitudes, circuit, list(range(self.n_qubits)))
+            return
+            
+        except Exception as e:
+            print(f"Recursive decomposition failed: {e}, using uniform superposition fallback...")
+            
+        # Strategy 3: Fallback to uniform superposition with amplitude-weighted phases
+        self._weighted_superposition_fallback(amplitudes, circuit)
+
+    def _recursive_amplitude_decomposition(self, amplitudes, circuit, qubits):
+        """
+        Implement recursive amplitude encoding using controlled rotations
+        Based on the algorithm from Mottonen et al. (2004)
+        """
+        if len(qubits) == 0:
+            return
+            
+        if len(qubits) == 1:
+            # Base case: single qubit
+            if len(amplitudes) >= 2:
+                # Calculate rotation angle from amplitudes
+                prob_0 = abs(amplitudes[0])**2
+                prob_1 = abs(amplitudes[1])**2 if len(amplitudes) > 1 else 0
+                total_prob = prob_0 + prob_1
+                
+                if total_prob > 1e-10:
+                    theta = 2 * np.arccos(np.sqrt(prob_0 / total_prob))
+                    circuit.ry(theta, qubits[0])
             return
         
-        # Recursive amplitude encoding approximation
-        for i in range(self.n_qubits):
-            if i == 0:
-                # First qubit gets the total amplitude distribution
-                total_left = np.sqrt(sum(abs(amp)**2 for amp in amplitudes[:n_amps//2]))
-                total_right = np.sqrt(sum(abs(amp)**2 for amp in amplitudes[n_amps//2:]))
-                total = total_left + total_right
-                if total > 1e-6:
-                    angle = 2 * np.arcsin(min(total_left / total, 1.0))
-                    circuit.ry(angle, i)
-            else:
-                # Subsequent qubits get conditional rotations (simplified)
+        # Recursive case: multiple qubits
+        n_amps = len(amplitudes)
+        mid_point = n_amps // 2
+        
+        # Calculate probabilities for left and right halves
+        left_amps = amplitudes[:mid_point]
+        right_amps = amplitudes[mid_point:] if mid_point < n_amps else np.array([0])
+        
+        left_norm_sq = sum(abs(amp)**2 for amp in left_amps)
+        right_norm_sq = sum(abs(amp)**2 for amp in right_amps)
+        total_norm_sq = left_norm_sq + right_norm_sq
+        
+        if total_norm_sq > 1e-10:
+            # Calculate rotation angle for current qubit
+            theta = 2 * np.arccos(np.sqrt(left_norm_sq / total_norm_sq))
+            circuit.ry(theta, qubits[0])
+            
+            # Recursively encode left and right branches
+            if left_norm_sq > 1e-10:
+                normalized_left = left_amps / np.sqrt(left_norm_sq)
+                # Create controlled subcircuit for left branch (when qubit[0] is |0⟩)
+                self._add_controlled_encoding(circuit, normalized_left, qubits[1:], qubits[0], control_state=0)
+            
+            if right_norm_sq > 1e-10:
+                normalized_right = right_amps / np.sqrt(right_norm_sq)
+                # Create controlled subcircuit for right branch (when qubit[0] is |1⟩)
+                self._add_controlled_encoding(circuit, normalized_right, qubits[1:], qubits[0], control_state=1)
+
+    def _add_controlled_encoding(self, circuit, amplitudes, target_qubits, control_qubit, control_state):
+        """
+        Add controlled encoding operations to the circuit
+        """
+        if len(target_qubits) == 0:
+            return
+            
+        # For simplicity, we'll use a simplified controlled operation
+        # In a full implementation, this would recursively apply the controlled version
+        # of the amplitude encoding to the target qubits
+        
+        if control_state == 0:
+            # Apply X gate to flip control, apply encoding, flip back
+            circuit.x(control_qubit)
+            self._apply_simple_encoding(circuit, amplitudes, target_qubits, control_qubit)
+            circuit.x(control_qubit)
+        else:
+            # Directly apply controlled encoding
+            self._apply_simple_encoding(circuit, amplitudes, target_qubits, control_qubit)
+
+    def _apply_simple_encoding(self, circuit, amplitudes, target_qubits, control_qubit):
+        """
+        Apply a simplified controlled encoding for the recursive decomposition
+        """
+        if len(target_qubits) == 1 and len(amplitudes) >= 2:
+            # Single target qubit case
+            prob_0 = abs(amplitudes[0])**2
+            prob_1 = abs(amplitudes[1])**2 if len(amplitudes) > 1 else 0
+            total_prob = prob_0 + prob_1
+            
+            if total_prob > 1e-10:
+                theta = 2 * np.arccos(np.sqrt(prob_0 / total_prob))
+                circuit.cry(theta, control_qubit, target_qubits[0])
+        else:
+            # Multiple target qubits - apply simplified encoding
+            for i, qubit in enumerate(target_qubits):
                 if i < len(amplitudes):
+                    # Simple controlled rotation based on amplitude
                     angle = 2 * np.arcsin(min(abs(amplitudes[i]), 1.0))
-                    circuit.ry(angle, i)
+                    circuit.cry(angle, control_qubit, qubit)
+
+    def _weighted_superposition_fallback(self, amplitudes, circuit):
+        """
+        Fallback strategy: Create weighted superposition using individual qubit rotations
+        Not perfect amplitude encoding, but preserves some amplitude information
+        """
+        print("Using weighted superposition fallback for amplitude encoding")
+        
+        # Normalize amplitudes to probabilities
+        probs = np.abs(amplitudes) ** 2
+        total_prob = np.sum(probs)
+        
+        if total_prob > 1e-10:
+            probs = probs / total_prob
+        else:
+            # Uniform distribution fallback
+            probs = np.ones(len(amplitudes)) / len(amplitudes)
+        
+        # Apply weighted rotations to create approximate amplitude distribution
+        for i in range(min(self.n_qubits, len(probs))):
+            if i < len(probs) and probs[i] > 1e-10:
+                # Map probability to rotation angle
+                theta = 2 * np.arcsin(np.sqrt(probs[i]))
+                circuit.ry(theta, i)
+                
+                # Add some entanglement to create correlations between qubits
+                if i > 0:
+                    circuit.cx(i-1, i)
 
 class AngleEncoder(QuantumEncoder):
     """

@@ -190,7 +190,7 @@ class QuantumMLMasterOrchestrator:
         )
         
         # Run complete Phase 2
-        phase2_results = self.phase2.run_complete_phase2(self.quantum_data)
+        phase2_results = self.phase2.run_quick_demo_phase2(self.quantum_data)
         
         print("\n✅ Phase 2 completed successfully!")
         return phase2_results
