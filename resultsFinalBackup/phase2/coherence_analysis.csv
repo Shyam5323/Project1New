@@ -1,0 +1,7 @@
+,,mean,mean,mean,mean,mean,mean,std,std,std,std,std,std
+,,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score
+encoding,,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis
+t1_time,t2_time,,,,,,,,,,,,
+50,25,0.9442,0.8865,0.813,0.9408,0.8655,0.7291,0.0,0.0,0.0,0.0,0.0,0.0
+150,25,0.9195,0.8762,0.813,0.9109,0.85,0.7291,0.0,0.0,0.0,0.0,0.0,0.0
+150,75,0.9168,0.8752,0.813,0.9074,0.8485,0.7291,0.0,0.0,0.0,0.0,0.0,0.0

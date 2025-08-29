@@ -1,0 +1,110 @@
+[
+  {
+    "encoding": "amplitude",
+    "backend": "ibm_nairobi",
+    "trial": 0,
+    "accuracy": 0.96925,
+    "precision": 0.9729766770850358,
+    "recall": 0.96925,
+    "f1_score": 0.9700450422643544,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "amplitude",
+    "backend": "ibm_nairobi",
+    "trial": 1,
+    "accuracy": 0.96925,
+    "precision": 0.9729766770850358,
+    "recall": 0.96925,
+    "f1_score": 0.9700450422643544,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "amplitude",
+    "backend": "ibm_nairobi",
+    "trial": 2,
+    "accuracy": 0.96925,
+    "precision": 0.9729766770850358,
+    "recall": 0.96925,
+    "f1_score": 0.9700450422643544,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "angle",
+    "backend": "ibm_nairobi",
+    "trial": 0,
+    "accuracy": 0.90225,
+    "precision": 0.9127414219050234,
+    "recall": 0.90225,
+    "f1_score": 0.8877273609639091,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "angle",
+    "backend": "ibm_nairobi",
+    "trial": 1,
+    "accuracy": 0.90225,
+    "precision": 0.9127414219050234,
+    "recall": 0.90225,
+    "f1_score": 0.8877273609639091,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "angle",
+    "backend": "ibm_nairobi",
+    "trial": 2,
+    "accuracy": 0.90225,
+    "precision": 0.9127414219050234,
+    "recall": 0.90225,
+    "f1_score": 0.8877273609639091,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "basis",
+    "backend": "ibm_nairobi",
+    "trial": 0,
+    "accuracy": 0.813,
+    "precision": 0.6609689999999999,
+    "recall": 0.813,
+    "f1_score": 0.7291439602868175,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "basis",
+    "backend": "ibm_nairobi",
+    "trial": 1,
+    "accuracy": 0.813,
+    "precision": 0.6609689999999999,
+    "recall": 0.813,
+    "f1_score": 0.7291439602868175,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  },
+  {
+    "encoding": "basis",
+    "backend": "ibm_nairobi",
+    "trial": 2,
+    "accuracy": 0.813,
+    "precision": 0.6609689999999999,
+    "recall": 0.813,
+    "f1_score": 0.7291439602868175,
+    "execution_time": 0,
+    "circuit_depth": null,
+    "evaluation_type": "trained_classifier"
+  }
+]

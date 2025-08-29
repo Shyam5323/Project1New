@@ -1,0 +1,7 @@
+,accuracy,accuracy,accuracy,accuracy,accuracy,f1_score,f1_score,precision,precision,recall,recall
+,mean,std,min,max,count,mean,std,mean,std,mean,std
+noise_level,,,,,,,,,,,
+0.0,0.813,0.0,0.813,0.813,3,0.7291,0.0,0.661,0.0,0.813,0.0
+0.001,0.813,0.0,0.813,0.813,3,0.7291,0.0,0.661,0.0,0.813,0.0
+0.01,0.813,0.0,0.813,0.813,3,0.7291,0.0,0.661,0.0,0.813,0.0
+0.05,0.813,0.0,0.813,0.813,3,0.7291,0.0,0.661,0.0,0.813,0.0

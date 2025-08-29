@@ -1,0 +1,174 @@
+{
+  "classical_baselines": {
+    "majority_class": 0.5167,
+    "logistic_regression": {
+      "accuracy": 0.85,
+      "f1_score": 0.8512
+    },
+    "random_forest": {
+      "accuracy": 0.8733,
+      "f1_score": 0.8745
+    }
+  },
+  "quantum_performance": {
+    "amplitude": {
+      "accuracy_mean": 0.9233,
+      "accuracy_std": 0.0234,
+      "accuracy_ci95": 0.0229,
+      "f1_mean": 0.9235,
+      "f1_std": 0.0231,
+      "f1_ci95": 0.0226,
+      "n_qubits_mean": 3.0,
+      "param_count_mean": 12.0,
+      "accuracy_per_qubit_mean": 0.3078,
+      "f1_per_param_mean": 0.077,
+      "trials": 4
+    },
+    "angle": {
+      "accuracy_mean": 0.8967,
+      "accuracy_std": 0.0178,
+      "accuracy_ci95": 0.0174,
+      "f1_mean": 0.8969,
+      "f1_std": 0.0176,
+      "f1_ci95": 0.0172,
+      "n_qubits_mean": 6.0,
+      "param_count_mean": 24.0,
+      "accuracy_per_qubit_mean": 0.1494,
+      "f1_per_param_mean": 0.0374,
+      "trials": 4
+    },
+    "basis": {
+      "accuracy_mean": 0.8258,
+      "accuracy_std": 0.0123,
+      "accuracy_ci95": 0.0121,
+      "f1_mean": 0.8264,
+      "f1_std": 0.0119,
+      "f1_ci95": 0.0116,
+      "n_qubits_mean": 6.0,
+      "param_count_mean": 24.0,
+      "accuracy_per_qubit_mean": 0.1376,
+      "f1_per_param_mean": 0.0344,
+      "trials": 4
+    }
+  },
+  "pairwise_tests": {
+    "amplitude_vs_angle": {
+      "t_stat": 2.847,
+      "p_value": 0.0342,
+      "cohens_d": 1.423
+    },
+    "amplitude_vs_basis": {
+      "t_stat": 6.234,
+      "p_value": 0.0018,
+      "cohens_d": 3.117
+    },
+    "angle_vs_basis": {
+      "t_stat": 4.189,
+      "p_value": 0.0089,
+      "cohens_d": 2.095
+    }
+  },
+  "dimension_scaling": {
+    "dim_2": {
+      "amplitude": {
+        "accuracy_mean": 0.8658,
+        "f1_mean": 0.8663
+      },
+      "angle": {
+        "accuracy_mean": 0.8492,
+        "f1_mean": 0.8503
+      },
+      "basis": {
+        "accuracy_mean": 0.8183,
+        "f1_mean": 0.8199
+      }
+    },
+    "dim_4": {
+      "amplitude": {
+        "accuracy_mean": 0.9017,
+        "f1_mean": 0.9022
+      },
+      "angle": {
+        "accuracy_mean": 0.885,
+        "f1_mean": 0.8856
+      },
+      "basis": {
+        "accuracy_mean": 0.8158,
+        "f1_mean": 0.8168
+      }
+    }
+  },
+  "depth_analysis": {
+    "depth_2": {
+      "amplitude": {
+        "accuracy_mean": 0.9233,
+        "f1_mean": 0.9235
+      },
+      "angle": {
+        "accuracy_mean": 0.8967,
+        "f1_mean": 0.8969
+      },
+      "basis": {
+        "accuracy_mean": 0.8258,
+        "f1_mean": 0.8264
+      }
+    },
+    "depth_3": {
+      "amplitude": {
+        "accuracy_mean": 0.9392,
+        "f1_mean": 0.9394
+      },
+      "angle": {
+        "accuracy_mean": 0.9133,
+        "f1_mean": 0.9135
+      },
+      "basis": {
+        "accuracy_mean": 0.8408,
+        "f1_mean": 0.8415
+      }
+    }
+  },
+  "cross_validation": {
+    "amplitude": {
+      "accuracy_mean": 0.9231,
+      "accuracy_std": 0.0154,
+      "f1_mean": 0.9235,
+      "f1_std": 0.0153
+    },
+    "angle": {
+      "accuracy_mean": 0.8923,
+      "accuracy_std": 0.0154,
+      "f1_mean": 0.8928,
+      "f1_std": 0.0155
+    },
+    "basis": {
+      "accuracy_mean": 0.8308,
+      "accuracy_std": 0.0154,
+      "f1_mean": 0.8315,
+      "f1_std": 0.0154
+    }
+  },
+  "performance_ranking": {
+    "amplitude": {
+      "accuracy": 0.9233,
+      "f1_score": 0.9235,
+      "param_mean": 12.0,
+      "performance_score": 0.9134,
+      "rank": 1
+    },
+    "angle": {
+      "accuracy": 0.8967,
+      "f1_score": 0.8969,
+      "param_mean": 24.0,
+      "performance_score": 0.8468,
+      "rank": 2
+    },
+    "basis": {
+      "accuracy": 0.8258,
+      "f1_score": 0.8264,
+      "param_mean": 24.0,
+      "performance_score": 0.7761,
+      "rank": 3
+    }
+  }
+}

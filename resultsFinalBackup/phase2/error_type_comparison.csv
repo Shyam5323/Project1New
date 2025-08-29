@@ -1,0 +1,7 @@
+,mean,mean,mean,mean,mean,mean,std,std,std,std,std,std
+,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score
+encoding,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis
+error_type,,,,,,,,,,,,
+amplitude_damping,0.9632,0.907,0.813,0.9624,0.8942,0.7291,0.0,0.0,0.0,0.0,0.0,0.0
+depolarizing,0.9658,0.896,0.813,0.965,0.8791,0.7291,0.0,0.0,0.0,0.0,0.0,0.0
+thermal_relaxation,0.8982,0.881,0.813,0.883,0.8573,0.7291,0.0,0.0,0.0,0.0,0.0,0.0

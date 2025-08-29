@@ -1,0 +1,10 @@
+encoding,backend,trial,accuracy,precision,recall,f1_score,execution_time,circuit_depth,evaluation_type
+amplitude,ibm_nairobi,0,0.96925,0.9729766770850358,0.96925,0.9700450422643544,0,,trained_classifier
+amplitude,ibm_nairobi,1,0.96925,0.9729766770850358,0.96925,0.9700450422643544,0,,trained_classifier
+amplitude,ibm_nairobi,2,0.96925,0.9729766770850358,0.96925,0.9700450422643544,0,,trained_classifier
+angle,ibm_nairobi,0,0.90225,0.9127414219050234,0.90225,0.8877273609639091,0,,trained_classifier
+angle,ibm_nairobi,1,0.90225,0.9127414219050234,0.90225,0.8877273609639091,0,,trained_classifier
+angle,ibm_nairobi,2,0.90225,0.9127414219050234,0.90225,0.8877273609639091,0,,trained_classifier
+basis,ibm_nairobi,0,0.813,0.6609689999999999,0.813,0.7291439602868175,0,,trained_classifier
+basis,ibm_nairobi,1,0.813,0.6609689999999999,0.813,0.7291439602868175,0,,trained_classifier
+basis,ibm_nairobi,2,0.813,0.6609689999999999,0.813,0.7291439602868175,0,,trained_classifier

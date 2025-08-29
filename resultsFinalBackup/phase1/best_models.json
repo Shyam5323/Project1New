@@ -1,0 +1,14 @@
+{
+  "amplitude": {
+    "accuracy": 0.94,
+    "trial": 0
+  },
+  "angle": {
+    "accuracy": 0.91,
+    "trial": 0
+  },
+  "basis": {
+    "accuracy": 0.83,
+    "trial": 1
+  }
+}

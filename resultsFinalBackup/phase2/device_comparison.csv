@@ -1,0 +1,5 @@
+,mean,mean,mean,mean,mean,mean,std,std,std,std,std,std
+,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score,accuracy,accuracy,accuracy,f1_score,f1_score,f1_score
+encoding,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis,amplitude,angle,basis
+backend,,,,,,,,,,,,
+ibm_nairobi,0.9692,0.9022,0.813,0.97,0.8877,0.7291,0.0,0.0,0.0,0.0,0.0,0.0
