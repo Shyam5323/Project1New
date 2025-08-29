@@ -140,7 +140,7 @@ class Phase2NoiseExperiment:
             
             print(f"   🔢 Training on {len(train_features_subset)} samples instead of {len(quantum_data['train_features'])}")
         else:
-            n_samples = min(4000, len(quantum_data['train_features']))  
+            n_samples = min(2000, len(quantum_data['train_features']))  
             indices = np.random.choice(len(quantum_data['train_features']), n_samples, replace=False)
             
             train_features_subset = quantum_data['train_features'][indices]

@@ -100,7 +100,7 @@ class QuantumMLMasterOrchestrator:
                 )
                 dataset = processor.load_dataset()                    
                 if dataset:
-                    max_samples = 8000
+                    max_samples = 4000
                     
                     dataset['train_images'] = dataset['train_images'][:max_samples]
                     dataset['train_labels'] = dataset['train_labels'][:max_samples]

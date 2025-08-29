@@ -40,42 +40,77 @@ class Phase1Config:
 class Phase2Config:
     """Configuration for Phase 2 noise studies"""
     
-    # Base noise parameters
-    noise_levels: List[float] = field(default_factory=lambda: [
-        0.001, 0.005, 0.01, 0.02, 0.05, 0.1
-    ])
+    # # Base noise parameters
+    # noise_levels: List[float] = field(default_factory=lambda: [
+    #     0.001, 0.005, 0.01, 0.02, 0.05, 0.1
+    # ])
     
+    # # Noise models to simulate
+    # noise_models: List[str] = field(default_factory=lambda: [
+    #     'depolarizing', 'amplitude_damping', 'phase_damping', 
+    #     'pauli', 'thermal_relaxation'
+    # ])
+    
+    # # IBM backend models
+    # ibm_backends: List[str] = field(default_factory=lambda: [
+    #     'ibm_perth', 'ibm_lagos', 'ibm_nairobi', 'ibm_oslo', 'ibm_geneva'
+    # ])
+    
+    # # Coherence time parameters (microseconds)
+    # t1_times: List[float] = field(default_factory=lambda: [10, 50, 100, 200])
+    # t2_times: List[float] = field(default_factory=lambda: [5, 25, 50, 100])
+    
+    # # Gate error rates
+    # single_qubit_errors: List[float] = field(default_factory=lambda: [
+    #     0.0001, 0.0005, 0.001, 0.002
+    # ])
+    # two_qubit_errors: List[float] = field(default_factory=lambda: [
+    #     0.005, 0.01, 0.02, 0.05
+    # ])
+    
+    # # Readout error rates  
+    # readout_errors: List[float] = field(default_factory=lambda: [
+    #     0.01, 0.02, 0.05, 0.1
+    # ])
+    
+    # # Experimental parameters
+    # shots_per_experiment: int = 4096
+    # trials_per_condition: int = 10
+    noise_levels: List[float] = field(default_factory=lambda: [
+        0.001, 0.01, 0.05  # Reduced from 6 to 3 levels (low, medium, high)
+    ])
+
     # Noise models to simulate
     noise_models: List[str] = field(default_factory=lambda: [
-        'depolarizing', 'amplitude_damping', 'phase_damping', 
-        'pauli', 'thermal_relaxation'
-    ])
-    
+        'depolarizing',        # A good generic, baseline model
+        'amplitude_damping',   # Represents T1 energy loss
+        'thermal_relaxation'   # A more realistic, combined model
+    ]) # Reduced from 5 to 3 core models
+
     # IBM backend models
     ibm_backends: List[str] = field(default_factory=lambda: [
-        'ibm_perth', 'ibm_lagos', 'ibm_nairobi', 'ibm_oslo', 'ibm_geneva'
+        'ibm_nairobi', 'ibm_geneva'  # Reduced from 5 to 2 representative backends
     ])
+
+    # Coherence time parameters (microseconds) for thermal_relaxation
+    t1_times: List[float] = field(default_factory=lambda: [50, 150]) # Reduced from 4 to 2
+    t2_times: List[float] = field(default_factory=lambda: [25, 75])  # Reduced from 4 to 2
+
+    # --- Parameters below are commented out to save time ---
+    # Their effects are implicitly studied in the 'ibm_backends' simulations.
+    # You can re-enable one of these for a more focused study if needed.
     
-    # Coherence time parameters (microseconds)
-    t1_times: List[float] = field(default_factory=lambda: [10, 50, 100, 200])
-    t2_times: List[float] = field(default_factory=lambda: [5, 25, 50, 100])
+    # # Gate error rates
+    single_qubit_errors: List[float] = field(default_factory=lambda: [0.0005, 0.002])
+    two_qubit_errors: List[float] = field(default_factory=lambda: [0.01, 0.05])
     
-    # Gate error rates
-    single_qubit_errors: List[float] = field(default_factory=lambda: [
-        0.0001, 0.0005, 0.001, 0.002
-    ])
-    two_qubit_errors: List[float] = field(default_factory=lambda: [
-        0.005, 0.01, 0.02, 0.05
-    ])
-    
-    # Readout error rates  
-    readout_errors: List[float] = field(default_factory=lambda: [
-        0.01, 0.02, 0.05, 0.1
-    ])
-    
+    # # Readout error rates  
+    readout_errors: List[float] = field(default_factory=lambda: [0.02, 0.1])
+
     # Experimental parameters
-    shots_per_experiment: int = 4096
-    trials_per_condition: int = 10
+    shots_per_experiment: int = 2048 # Kept high for accuracy
+    trials_per_condition: int = 3      # Reduced from 10. (3 is the minimum for std. deviation)
+
     
     # Results directory
     results_dir: str = 'results/phase2'
